@@ -79,5 +79,8 @@ VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   config.hook_into :webmock
   config.default_cassette_options = {re_record_interval: 7.days}
+  config.filter_sensitive_data('mq-key') { ENV['MQ-KEY'] }
+  config.filter_sensitive_data('mq-secret') { ENV['MQ-SECRET'] }
+  config.filter_sensitive_data('ow-key') { ENV['OW-KEY'] }
   # config.allow_http_connections_when_no_cassette = true
 end
