@@ -36,9 +36,25 @@ RSpec.describe "api/v1/forecast endpoint", type: :request do
   end
 
   describe "Edge Case" do
-    it "returns a 400 error if location param is not provided"
+    it "returns a 400 error if location param is not provided" do
+      VCR.use_cassette('forecast_no_location') do
+        get "/api/v1/forecast"
+        body = JSON.parse(response.body, symbolize_names: true)
 
-    it "returns a 400 error if location is blank"
+        expect(response.status).to eq(400)
+        expect(body).to eq({:error=>["Location required", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"]})
+      end
+    end
+
+    it "returns a 400 error if location is blank" do
+      VCR.use_cassette('forecast_location_blank') do
+        get "/api/v1/forecast?location="
+        body = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response.status).to eq(400)
+        expect(body).to eq({:error=>["location cannot be blank", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"]})
+      end
+    end
 
     it "returns a 400 error if only a city is provided"
 
