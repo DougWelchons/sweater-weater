@@ -66,8 +66,9 @@ alternatively you can run `rails db:{drop,create,migrate,seed}` to set up the da
 #### Tests for each endpoint
 ##### forecast endpoints
 - happy path testing includes:
-  -
+  - endpoint returns a 200 response with the proper data structure
 - Edge case testing includes:
-  -
+  - endpoint returns a 400 error if location param is not provided
+  - endpoint returns a 400 error if location is blank
 - Sad Path testing includes:
   -
