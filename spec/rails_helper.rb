@@ -82,5 +82,7 @@ VCR.configure do |config|
   config.filter_sensitive_data('mq-key') { ENV['MQ-KEY'] }
   config.filter_sensitive_data('mq-secret') { ENV['MQ-SECRET'] }
   config.filter_sensitive_data('ow-key') { ENV['OW-KEY'] }
+  config.filter_sensitive_data('fr-key') { ENV['FR-KEY'] }
+  config.filter_sensitive_data('fr-secret') { ENV['FR-SECRET'] }
   # config.allow_http_connections_when_no_cassette = true
 end

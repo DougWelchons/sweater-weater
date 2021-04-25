@@ -35,7 +35,7 @@ class WeatherService
         icon: hour[:weather].first[:icon]
        }
     end
-    
+
     OpenStruct.new({id: nil, current_weather: current, daily_weather: daily, hourly_weather: hourly})
   end
 
@@ -46,61 +46,5 @@ class WeatherService
 
   def self.connection
     Faraday.new(url: ENV['OW-ONECALL-API'])
-    # Faraday.new(url: ENV['MQ-GEOCODE-API'], params: { api_key: ENV['MQ-KEY'] })
   end
 end
-
-
-# current
-# => {:dt=>1619235581,
-# :sunrise=>1619181369,
-# :sunset=>1619232266,
-# :temp=>50,
-# :feels_like=>49.3,
-# # :pressure=>1008,
-# :humidity=>50,
-# # :dew_point=>32.11,
-# :uvi=>0,
-# # :clouds=>90,
-# :visibility=>10000,
-# # :wind_speed=>3.44,
-# # :wind_deg=>100,
-# :weather=>[{(:id=>804,) (:main=>"Clouds"), :description=>"overcast clouds", :icon=>"04n"}]}
-#
-#
-# daily
-# {:dt=>1619204400,
-#   :sunrise=>1619181369,
-#   :sunset=>1619232266,
-#   # :moonrise=>1619216520,
-#   # :moonset=>1619177580,
-#   # :moon_phase=>0.37,
-#   :temp=>{(:day=>45.59,) :min=>31.24, :max=>50.52, (:night=>48.24, :eve=>50.13, :morn=>32.52)},
-#   # :feels_like=>{:day=>45.59, :night=>32.52, :eve=>47.46, :morn=>32.52},
-#   # :pressure=>1016,
-#   # :humidity=>64,
-#   # :dew_point=>29.64,
-#   # :wind_speed=>3.18,
-#   # :wind_deg=>78,
-#   # :wind_gust=>4.09,
-#   :weather=>[{(:id=>804, :main=>"Clouds"), :description=>"overcast clouds", :icon=>"04d"}],
-#   # :clouds=>100,
-#   # :pop=>0.23,
-#   # :uvi=>3.27},
-#
-#
-# hour
-# :dt=>1619233200,
-#     :temp=>48.4,
-#     # :feels_like=>48.4,
-#     # :pressure=>1009,
-#     # :humidity=>57,
-#     # :dew_point=>33.89,
-#     # :uvi=>0,
-#     # :clouds=>90,
-#     # :visibility=>10000,
-#     # :wind_speed=>2.71,
-#     # :wind_deg=>97,
-#     # :wind_gust=>2.46,
-#     :weather=>[{(:id=>804, :main=>"Clouds"), :description=>"overcast clouds", :icon=>"04n"}],
-#     # :pop=>0},
