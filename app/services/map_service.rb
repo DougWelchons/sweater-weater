@@ -15,6 +15,5 @@ class MapService
 
   def self.connection
     Faraday.new(url: ENV['MQ-GEOCODE-API'])
-    # Faraday.new(url: ENV['MQ-GEOCODE-API'], params: { api_key: ENV['MQ-KEY'] })
   end
 end

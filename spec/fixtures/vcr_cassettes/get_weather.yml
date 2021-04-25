@@ -2,60 +2,6 @@
 http_interactions:
 - request:
     method: get
-    uri: http://www.mapquestapi.com/geocoding/v1/address?key=mq-key&location=libby,MT
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.4.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Sun, 25 Apr 2021 21:12:15 GMT
-      Content-Type:
-      - application/json;charset=UTF-8
-      Content-Length:
-      - '1011'
-      Access-Control-Allow-Methods:
-      - OPTIONS,GET,POST
-      Access-Control-Allow-Origin:
-      - "*"
-      Cache-Control:
-      - no-cache, must-revalidate
-      Expires:
-      - Mon, 20 Dec 1998 01:00:00 GMT
-      Geocodetransactioncount:
-      - '1'
-      Last-Modified:
-      - Sun, 25 Apr 2021 21:12:15 GMT
-      Pragma:
-      - no-cache
-      Reversegeocodetransactioncount:
-      - '0'
-      Server:
-      - Apache-Coyote/1.1
-      Set-Cookie:
-      - JSESSIONID=8C1FC188A1D80CC928C71864EA75BA55; Path=/; HttpOnly
-      Status:
-      - success
-      Transactionweight:
-      - '1.0'
-    body:
-      encoding: UTF-8
-      string: '{"info":{"statuscode":0,"copyright":{"text":"\u00A9 2021 MapQuest,
-        Inc.","imageUrl":"http://api.mqcdn.com/res/mqlogo.gif","imageAltText":"\u00A9
-        2021 MapQuest, Inc."},"messages":[]},"options":{"maxResults":-1,"thumbMaps":true,"ignoreLatLngInput":false},"results":[{"providedLocation":{"location":"libby,MT"},"locations":[{"street":"","adminArea6":"","adminArea6Type":"Neighborhood","adminArea5":"Libby","adminArea5Type":"City","adminArea4":"","adminArea4Type":"County","adminArea3":"MT","adminArea3Type":"State","adminArea1":"US","adminArea1Type":"Country","postalCode":"","geocodeQualityCode":"A5XAX","geocodeQuality":"CITY","dragPoint":false,"sideOfStreet":"N","linkId":"282028289","unknownInput":"","type":"s","latLng":{"lat":48.38828,"lng":-115.55581},"displayLatLng":{"lat":48.38828,"lng":-115.55581},"mapUrl":"http://www.mapquestapi.com/staticmap/v5/map?key=mq-key&type=map&size=225,160&locations=48.38828,-115.55581|marker-sm-50318A-1&scalebar=true&zoom=12&rand=1586686959"}]}]}'
-  recorded_at: Sun, 25 Apr 2021 21:12:15 GMT
-- request:
-    method: get
     uri: https://api.openweathermap.org/data/2.5/onecall?appid=80d0fc1196ef1f57628aad517acb93e5&exclude=minutely,alerts&lat=48.38828&lon=-115.55581&units=imperial
     body:
       encoding: US-ASCII
@@ -75,7 +21,7 @@ http_interactions:
       Server:
       - openresty
       Date:
-      - Sun, 25 Apr 2021 21:12:16 GMT
+      - Sun, 25 Apr 2021 21:12:17 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -150,5 +96,5 @@ http_interactions:
         clouds","icon":"04d"}],"clouds":88,"pop":0,"uvi":6},{"dt":1619895600,"sunrise":1619871737,"sunset":1619924165,"moonrise":1619855880,"moonset":1619884440,"moon_phase":0.68,"temp":{"day":55.22,"min":47.17,"max":57.16,"night":49.42,"eve":53.49,"morn":47.17},"feels_like":{"day":54.07,"night":47.17,"eve":52.77,"morn":47.17},"pressure":1011,"humidity":77,"dew_point":43.41,"wind_speed":4.81,"wind_deg":228,"wind_gust":7.49,"weather":[{"id":500,"main":"Rain","description":"light
         rain","icon":"10d"}],"clouds":83,"pop":0.9,"rain":3.85,"uvi":6},{"dt":1619982000,"sunrise":1619958039,"sunset":1620010651,"moonrise":1619945580,"moonset":1619974920,"moon_phase":0.71,"temp":{"day":47.39,"min":40.53,"max":51.89,"night":44.17,"eve":51.89,"morn":40.53},"feels_like":{"day":45.73,"night":38.05,"eve":49.51,"morn":38.05},"pressure":1015,"humidity":73,"dew_point":34.48,"wind_speed":5.08,"wind_deg":264,"wind_gust":6.04,"weather":[{"id":500,"main":"Rain","description":"light
         rain","icon":"10d"}],"clouds":88,"pop":0.84,"rain":0.15,"uvi":6}]}'
-  recorded_at: Sun, 25 Apr 2021 21:12:16 GMT
+  recorded_at: Sun, 25 Apr 2021 21:12:17 GMT
 recorded_with: VCR 6.0.0
