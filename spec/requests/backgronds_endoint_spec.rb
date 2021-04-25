@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "api/v1/backgrounds endpoint" do
   describe "Happy Path" do
-    it "returns a 200 response an image url and other relevent info" do
+    it "returns a 200 response an image url and other relevant info" do
       VCR.use_cassette('backgrounds_request') do
         location = "libby,mt"
         get "/api/v1/backgrounds?location=#{location}"

@@ -84,7 +84,7 @@ alternatively you can run `rails db:{drop,create,migrate,seed}` to set up the da
 
 ##### Backgrounds endpoints
 - happy path testing includes:
-  - endpoint returns a 200 response an image url and other relevent info
+  - endpoint returns a 200 response an image url and other relevant info
 - Edge case testing includes:
   - endpoint returns a 400 error if location param is not provided
   - endpoint returns a 400 error if location is blank
