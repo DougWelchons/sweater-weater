@@ -17,12 +17,14 @@ This project was tested with:
 #### Contents
 - [program setup](#program-setup)
 - [Endpoint documentation](#endpoint-documentation)
-  - [Forecast](#forecast-items)
+  - [Forecast](#forecast)
+  - [Background](#background)
 
 - [Testing](#testing)
   - [Running tests](#running-tests)
   - [Tests for each endpoint](#tests-for-each-endpont)
     - [Forecast](#forecast-endpoints)
+    - [Background](#background-endpoint)
 
 ### program setup
 To run the program on you own machine follow these setup steps:
@@ -42,7 +44,7 @@ If you have an existing database called `rails-engine` you will have to run `rai
 alternatively you can run `rails db:{drop,create,migrate,seed}` to set up the database.
 
 ### Endpoint Documentation
-###### All items
+###### Forecast
 - This endpoint returns the weather forecast for a given city including:
   - current weather
   - daily weather for the next five days
@@ -52,6 +54,13 @@ alternatively you can run `rails db:{drop,create,migrate,seed}` to set up the da
     - location=<location> if in the US, <location> should include city and state, otherwise it should include city and country.
   - example:
     - http://localhost:3000/api/v1/forecast?location=libby,mt
+
+###### Backgrounds
+- This endpoint returns an image for a given city.
+  - required query params:
+    - location=<location> if in the US, <location> should include city and state, otherwise it should include city and country.
+  - example:
+    - http://localhost:3000/api/v1/backgrounds?location=libby,mt
 
 
 
@@ -64,9 +73,18 @@ alternatively you can run `rails db:{drop,create,migrate,seed}` to set up the da
 
 
 #### Tests for each endpoint
-##### forecast endpoints
+##### Forecast endpoints
 - happy path testing includes:
   - endpoint returns a 200 response with the proper data structure
+- Edge case testing includes:
+  - endpoint returns a 400 error if location param is not provided
+  - endpoint returns a 400 error if location is blank
+- Sad Path testing includes:
+  -
+
+##### Backgrounds endpoints
+- happy path testing includes:
+  - endpoint returns a 200 response an image url and other relevent info
 - Edge case testing includes:
   - endpoint returns a 400 error if location param is not provided
   - endpoint returns a 400 error if location is blank
