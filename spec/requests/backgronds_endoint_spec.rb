@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "api/v1/backgrounds endpoint" do
   describe "Happy Path" do
-    it "returns an image url and relevent info" do
+    it "returns a 200 response an image url and other relevent info" do
       VCR.use_cassette('backgrounds_request') do
         location = "libby,mt"
         get "/api/v1/backgrounds?location=#{location}"
@@ -29,11 +29,29 @@ RSpec.describe "api/v1/backgrounds endpoint" do
     end
   end
 
-  describe "Sad Path" do
+  describe "Edge Case" do
+    it "returns a 400 error if location param is not provided" do
+      VCR.use_cassette('backgrond_no_location') do
+        get "/api/v1/backgrounds"
+        body = JSON.parse(response.body, symbolize_names: true)
 
+        expect(response.status).to eq(400)
+        expect(body).to eq({:error=>["Location required", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"]})
+      end
+    end
+
+    it "returns a 400 error if location is blank" do
+      VCR.use_cassette('backgrond_location_blank') do
+        get "/api/v1/backgrounds?location="
+        body = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response.status).to eq(400)
+        expect(body).to eq({:error=>["location cannot be blank", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"]})
+      end
+    end
   end
 
-  describe "Edge Case" do
+  describe "Sad Path" do
 
   end
 end
