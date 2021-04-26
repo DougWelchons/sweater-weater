@@ -1,7 +1,8 @@
 class SalariesService
 
   def self.get_salaries(destination)
-    result = make_api_call(/slug%3Adenver/salaries)
+    result = make_api_call("/api/urban_areas/slug%3A#{destination}/salaries")
+    require "pry"; binding.pry
   end
 
   def self.make_api_call(url)
