@@ -27,7 +27,6 @@ RSpec.describe "app/v1/users endpoint" do
 
   describe "Sad Path" do
     it "returns a 400 respons if no email provided" do
-      email = "email@domain.com"
       password = "password"
       password_confirmation = "password"
       headers = {'CONTENT_TYPE' => 'application/json'}
@@ -82,7 +81,6 @@ RSpec.describe "app/v1/users endpoint" do
 
     it "returns a 400 respons if no password provided" do
       email = "email@domain.com"
-      password = "password"
       password_confirmation = "password"
       headers = {'CONTENT_TYPE' => 'application/json'}
       body = {email: email, password_confirmation: password_confirmation}
@@ -91,6 +89,18 @@ RSpec.describe "app/v1/users endpoint" do
 
       expect(response.status).to eq(400)
       expect(body[:error]).to eq("Validation failed: Password can't be blank")
+    end
+
+    it "returns a 400 respons if no password_confirmation provided" do
+      email = "email@domain.com"
+      password = "password"
+      headers = {'CONTENT_TYPE' => 'application/json'}
+      body = {email: email, password: password}
+      post "/api/v1/users", headers: headers, params: body, as: :json
+      body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(400)
+      expect(body[:error]).to eq("Validation failed: Password confirmation can't be blank")
     end
   end
 end
