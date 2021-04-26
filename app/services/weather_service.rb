@@ -39,6 +39,12 @@ class WeatherService
     OpenStruct.new({id: nil, current_weather: current, daily_weather: daily, hourly_weather: hourly})
   end
 
+  def self.get_current_weather(cords)
+    response = make_api_call("?lat=#{cords.lat}&lon=#{cords.lng}&exclude=minutely,alerts&appid=80d0fc1196ef1f57628aad517acb93e5&units=imperial")
+
+    OpenStruct.new({summary: response[:current][:weather].first[:description], temperature: response[:current][:temp]})
+  end
+
   def self.make_api_call(url)
     response = connection.get(url)
     JSON.parse(response.body, symbolize_names: true)
