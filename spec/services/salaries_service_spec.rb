@@ -15,6 +15,13 @@ RSpec.describe SalariesService do
         expect(result.salaries.first[:min]).to be_a(String)
         expect(result.salaries.first[:max]).to be_a(String)
       end
+
+      it "returns an error if location cannot be found" do
+        result = SalariesService.get_salaries("kdsfhadskh")
+
+        expect(result).to be_a(OpenStruct)
+        expect(result.error).to eq("Destination could not be found")
+      end
     end
   end
 end

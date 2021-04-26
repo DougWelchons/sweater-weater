@@ -48,4 +48,8 @@ RSpec.describe "app/v1/salaries endpoint" do
       expect(body).to eq({:error=>["Destination cannot be blank", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"]})
     end
   end
+
+  describe "Sad Path" do
+    it "returns a 400 error if location cannot be found"
+  end
 end

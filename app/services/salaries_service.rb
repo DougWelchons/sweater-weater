@@ -4,6 +4,7 @@ class SalariesService
   def self.get_salaries(destination)
     numbers =
     result = make_api_call("/api/urban_areas/slug%3A#{destination}/salaries")
+    return OpenStruct.new({error: "Destination could not be found"}) if result == 404
     jobs = ["Data Analyst",
             "Data Scientist",
             "Mobile Developer",
@@ -20,13 +21,13 @@ class SalariesService
         min: number_to_currency(salary[:salary_percentiles][:percentile_25]),
         max: number_to_currency(salary[:salary_percentiles][:percentile_75])
       }
-      # require "pry"; binding.pry
     end
     OpenStruct.new(salaries: cleaned_salaries)
   end
 
   def self.make_api_call(url)
     response = connection.get(url)
+    return response.status unless response.status == 200
     JSON.parse(response.body, symbolize_names: true)
   end
 
