@@ -30,4 +30,22 @@ RSpec.describe "app/v1/salaries endpoint" do
       expect(body[:data][:attributes][:salaries].first[:max]).to be_a(String)
     end
   end
+
+  describe "Edge Case" do
+    it "returns a 400 error if destination param is not provided" do
+      get "/api/v1/salaries"
+      body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(400)
+      expect(body).to eq({:error=>["Destination required", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"]})
+    end
+
+    it "returns a 400 error if destination is blank" do
+      get "/api/v1/salaries?destination="
+      body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(400)
+      expect(body).to eq({:error=>["Destination cannot be blank", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"]})
+    end
+  end
 end
