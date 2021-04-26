@@ -50,6 +50,13 @@ RSpec.describe "app/v1/salaries endpoint" do
   end
 
   describe "Sad Path" do
-    it "returns a 400 error if location cannot be found"
+    it "returns a 400 error if location cannot be found" do
+      destination = "kdsfhadskh"
+      get "/api/v1/salaries?destination=#{destination}"
+      body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(400)
+      expect(body).to eq({:error=>["Destination could not be found", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"]})
+    end
   end
 end
