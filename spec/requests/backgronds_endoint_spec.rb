@@ -20,11 +20,11 @@ RSpec.describe "api/v1/backgrounds endpoint" do
         expect(body[:data][:attributes][:image]).to be_a(Hash)
         expect(body[:data][:attributes][:image].keys).to eq([:location, :image_url, :credit])
         expect(body[:data][:attributes][:image][:location]).to eq(location)
-        expect(body[:data][:attributes][:image][:image_url]).to eq("https://live.staticflickr.com/4894/45975335341_a0651a3f92.jpg")
+        expect(body[:data][:attributes][:image][:image_url]).to eq("https://live.staticflickr.com/850/28859609887_730f9fff60.jpg")
         expect(body[:data][:attributes][:image][:credit]).to be_a(Hash)
         expect(body[:data][:attributes][:image][:credit].keys).to eq([:source, :auther])
         expect(body[:data][:attributes][:image][:credit][:source]).to eq("flickr.com")
-        expect(body[:data][:attributes][:image][:credit][:auther]).to eq("ID:129652149@N03")
+        expect(body[:data][:attributes][:image][:credit][:auther]).to eq("ID:67812736@N00")
       end
     end
   end

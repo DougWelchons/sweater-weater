@@ -25,12 +25,12 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 25 Apr 2021 21:12:17 GMT
+      - Mon, 26 Apr 2021 17:03:15 GMT
       Server:
       - Apache/2.4.46 (Ubuntu)
       Set-Cookie:
       - ccc=%7B%22needsConsent%22%3Afalse%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
-        expires=Tue, 25-May-2021 21:12:17 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+        expires=Wed, 26-May-2021 17:03:14 GMT; Max-Age=2592000; path=/; domain=.flickr.com
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -38,11 +38,11 @@ http_interactions:
       X-Cache:
       - Miss from cloudfront
       Via:
-      - 1.1 5c6526bb54cf9233578cb72c28111052.cloudfront.net (CloudFront)
+      - 1.1 0906d4887f6625f4a4467d8d4fd268d3.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
-      - YVR50-C1
+      - SEA19-C3
       X-Amz-Cf-Id:
-      - VF9a9GXQ2GP-ze1QPpGCopgNhcGdWC8vRzPbFtFV_5nHvjlpuAPC2g==
+      - JU0WOVgC7r8jwGxgzskjTCkDi2OaqcCG6CVnXENC_hc5DVrs1QExIg==
     body:
       encoding: UTF-8
       string: '{"photos":{"page":1,"pages":2,"perpage":100,"total":"162","photo":[{"id":"45975335341","owner":"129652149@N03","secret":"a0651a3f92","server":"4894","farm":5,"title":"Bear
@@ -142,5 +142,5 @@ http_interactions:
         Outboard Motor","ispublic":1,"isfriend":0,"isfamily":0},{"id":"6571340289","owner":"35498158@N08","secret":"f9afb961ed","server":"7012","farm":8,"title":"Little
         House in the Woods","ispublic":1,"isfriend":0,"isfamily":0},{"id":"6129072142","owner":"7800642@N06","secret":"5dbdccb87b","server":"6199","farm":7,"title":"9-05-2011
         Kootenai Falls","ispublic":1,"isfriend":0,"isfamily":0}]},"stat":"ok"}'
-  recorded_at: Sun, 25 Apr 2021 21:12:17 GMT
+  recorded_at: Mon, 26 Apr 2021 17:03:15 GMT
 recorded_with: VCR 6.0.0

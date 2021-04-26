@@ -1,7 +1,7 @@
 class WeatherService
 
   def self.get_weather(cords)
-    response = make_api_call("?lat=#{cords.lat}&lon=#{cords.lng}&exclude=minutely,alerts&appid=80d0fc1196ef1f57628aad517acb93e5&units=imperial")
+    response = make_api_call("?lat=#{cords.lat}&lon=#{cords.lng}&exclude=minutely,alerts&appid=#{ENV['OW-KEY']}&units=imperial")
     current = {
                 datetime: Time.at(response[:current][:dt]).to_s,
                 sunrise: Time.at(response[:current][:sunrise]).to_s,
@@ -40,7 +40,7 @@ class WeatherService
   end
 
   def self.get_current_weather(cords)
-    response = make_api_call("?lat=#{cords.lat}&lon=#{cords.lng}&exclude=minutely,alerts&appid=80d0fc1196ef1f57628aad517acb93e5&units=imperial")
+    response = make_api_call("?lat=#{cords.lat}&lon=#{cords.lng}&exclude=minutely,alerts&appid=#{ENV['OW-KEY']}&units=imperial")
 
     OpenStruct.new({summary: response[:current][:weather].first[:description], temperature: "#{response[:current][:temp]} F"})
   end

@@ -1,6 +1,8 @@
 class SalariesService
+  extend ActionView::Helpers::NumberHelper
 
   def self.get_salaries(destination)
+    numbers =
     result = make_api_call("/api/urban_areas/slug%3A#{destination}/salaries")
     jobs = ["Data Analyst",
             "Data Scientist",
@@ -18,9 +20,9 @@ class SalariesService
         min: number_to_currency(salary[:salary_percentiles][:percentile_25]),
         max: number_to_currency(salary[:salary_percentiles][:percentile_75])
       }
+      # require "pry"; binding.pry
     end
     OpenStruct.new(salaries: cleaned_salaries)
-    require "pry"; binding.pry
   end
 
   def self.make_api_call(url)

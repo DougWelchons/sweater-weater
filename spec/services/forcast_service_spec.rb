@@ -24,7 +24,7 @@ RSpec.describe WeatherService do
     describe ".get_current_weather" do
       it "returns and OpenStruct object with current daily, and hourly weather" do
         cords = OpenStruct.new({lat: 48.38828, lng: -115.55581})
-        result = WeatherService.get_weather(cords)
+        result = WeatherService.get_current_weather(cords)
 
         expect(result).to be_a(OpenStruct)
         expect(result.summary).to be_a(String)
