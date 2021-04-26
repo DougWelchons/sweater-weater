@@ -15,8 +15,8 @@ class SalariesService
     cleaned_salaries = salaries.map do |salary|
       {
         title: salary[:job][:title],
-        min: salary[:salary_percentiles][:percentile_25],
-        max: salary[:salary_percentiles][:percentile_75]
+        min: number_to_currency(salary[:salary_percentiles][:percentile_25]),
+        max: number_to_currency(salary[:salary_percentiles][:percentile_75])
       }
     end
     OpenStruct.new(salaries: cleaned_salaries)
