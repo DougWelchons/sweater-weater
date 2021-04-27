@@ -36,7 +36,6 @@ RSpec.describe "app/v1/users endpoint" do
 
       expect(response.status).to eq(400)
       expect(body[:error]).to eq("Validation failed: Email can't be blank, Email is invalid")
-
     end
 
     it "returns a 400 respons if email is not in the right format" do

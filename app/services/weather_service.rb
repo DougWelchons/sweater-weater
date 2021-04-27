@@ -39,9 +39,14 @@ class WeatherService
     OpenStruct.new({id: nil, current_weather: current, daily_weather: daily, hourly_weather: hourly})
   end
 
-  def self.get_current_weather(cords)
+  def self.get_future_weather(cords, offset)
     response = make_api_call("?lat=#{cords.lat}&lon=#{cords.lng}&exclude=minutely,alerts&appid=#{ENV['OW-KEY']}&units=imperial")
-    OpenStruct.new({summary: response[:current][:weather].first[:description], temperature: response[:current][:temp]})
+    if offset <= 48
+      OpenStruct.new({summary: response[:hourly][offset - 1][:weather].first[:description], temperature: response[:hourly][offset - 1][:temp]})
+    else
+      OpenStruct.new({summary: response[:daily][(offset / 24) - 1][:weather].first[:description], temperature: response[:daily][(offset / 24) - 1][:temp][:max]})
+    end
+    # require "pry"; binding.pry
   end
 
   def self.make_api_call(url)

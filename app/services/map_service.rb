@@ -10,11 +10,11 @@ class MapService
 
   def self.get_route(from, to)
     response = make_api_call("/directions/v2/route?key=#{ENV['MQ-KEY']}&from=#{from}&to=#{to}")
-    # require "pry"; binding.pry
+
     return OpenStruct.new({travel_time: "impossible"}) if response[:route][:routeError][:errorCode] == 2
-     hours = response[:route][:realTime] / 3600
-     minutes = response[:route][:realTime] % 3600 / 60
-     OpenStruct.new({travel_time: "#{hours} hours, #{minutes} minutes"})
+    hours = response[:route][:realTime] / 3600
+    minutes = response[:route][:realTime] % 3600 / 60
+    OpenStruct.new({travel_time: "#{hours} hours, #{minutes} minutes", offset: hours})
   end
 
   def self.make_api_call(url)

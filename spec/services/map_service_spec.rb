@@ -23,6 +23,7 @@ RSpec.describe MapService do
 
           expect(result).to be_a(OpenStruct)
           expect(result.travel_time).to eq("16 hours, 49 minutes")
+          expect(result.offset).to eq(16)
         end
       end
 
@@ -32,6 +33,7 @@ RSpec.describe MapService do
 
           expect(result).to be_a(OpenStruct)
           expect(result.travel_time).to eq("impossible")
+          expect(result.offset).to eq(nil)
         end
       end
     end
