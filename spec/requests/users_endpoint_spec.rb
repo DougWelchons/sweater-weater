@@ -44,12 +44,12 @@ RSpec.describe "app/v1/users endpoint" do
       password = "password"
       password_confirmation = "password"
       headers = {'CONTENT_TYPE' => 'application/json'}
-      body = {password: password, password_confirmation: password_confirmation}
+      body = {email: email, password: password, password_confirmation: password_confirmation}
       post "/api/v1/users", headers: headers, params: body, as: :json
       body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(body[:error]).to eq("Validation failed: Email can't be blank, Email is invalid")
+      expect(body[:error]).to eq("Validation failed: Email is invalid")
     end
 
     it "returns a 400 respons if email already exists" do
