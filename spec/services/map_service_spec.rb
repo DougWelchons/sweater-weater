@@ -15,5 +15,25 @@ RSpec.describe MapService do
         end
       end
     end
+
+    describe ".get_route" do
+      it "returns an OpenStruct object with the travel time lat and lng as attrabutes" do
+        VCR.use_cassette("get_route") do
+          result = MapService.get_route("denver,co", "libby,mt")
+
+          expect(result).to be_a(OpenStruct)
+          expect(result.travel_time).to eq("16 hours, 49 minutes")
+        end
+      end
+
+      it "returns an OpenStruct object with the travel time lat and lng as attrabutes" do
+        VCR.use_cassette("no_route") do
+          result = MapService.get_route("denver,co", "paris,france")
+
+          expect(result).to be_a(OpenStruct)
+          expect(result.travel_time).to eq("impossible")
+        end
+      end
+    end
   end
 end
