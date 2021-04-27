@@ -27,8 +27,6 @@ RSpec.describe "api/v1/forecast endpoint", type: :request do
         expect(body[:data][:attributes][:hourly_weather].first.keys).to eq([:time, :temperature, :conditions, :icon])
       end
     end
-
-    it "is case insinsitive"
   end
 
   describe "Sad Path" do
@@ -55,15 +53,5 @@ RSpec.describe "api/v1/forecast endpoint", type: :request do
         expect(body).to eq({:error=>["location cannot be blank", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"]})
       end
     end
-
-    it "returns a 400 error if only a city is provided"
-
-    it "returns a 400 error if only a state is provided"
-
-    it "returns a 400 error if state is not a 2 letter code"
-
-    it "returns a 400 error if city cannot be found"
-
-    it "returns a 400 error if the state is not a proper 2 lettrer code"
   end
 end

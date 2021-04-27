@@ -13,6 +13,6 @@ class ImageService
   end
 
   def self.connection
-    Faraday.new(url: ENV['FR-SEARCH_API'])
+    Faraday.new(url: ENV['FR-SEARCH-API'])
   end
 end
