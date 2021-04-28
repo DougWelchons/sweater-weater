@@ -19,6 +19,16 @@ RSpec.describe ImageService do
           expect(result.image[:credit][:auther]).to eq("ID:129652149@N03")
         end
       end
+
+      it "returns an error OpenStruct object if no images found" do
+        VCR.use_cassette('no_image') do
+          location = "ldjkf jkdf alsdkf w-eewr"
+          result = ImageService.get_image(location)
+
+          expect(result).to be_a(OpenStruct)
+          expect(result.errors).to eq("No images found")
+        end
+      end
     end
   end
 end

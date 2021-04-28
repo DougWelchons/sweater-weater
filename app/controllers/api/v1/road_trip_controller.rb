@@ -6,7 +6,7 @@ class Api::V1::RoadTripController < ApplicationController
     if road_trip.errors
       render json: error(road_trip.errors), status: :bad_request
     else
-      render json: RoadtripSerializer.new(road_trip), status: :created
+      render json: RoadtripSerializer.new(road_trip)
     end
   end
 end
