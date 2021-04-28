@@ -14,7 +14,7 @@ RSpec.describe RoadTripFacade do
             expect(result).to be_a(OpenStruct)
             expect(result.start_city).to eq("libby,mt")
             expect(result.end_city).to eq("denver,co")
-            expect(result.travel_time).to eq("17 hours, 35 minutes")
+            expect(result.travel_time).to eq("17 hours, 31 minutes")
             expect(result.weather_at_eta).to be_a(Hash)
             expect(result.weather_at_eta.keys).to eq([:temperature, :conditions])
             expect(result.weather_at_eta[:temperature]).to be_a(Float)

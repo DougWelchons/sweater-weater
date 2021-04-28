@@ -6,8 +6,10 @@ class ForecastFacade
     if errors.any?
       OpenStruct.new({errors: errors})
     else
-      cords = MapService.get_geocode(params[:location])
-      WeatherService.get_weather(cords)
+      Rails.cache.fetch("get-cords-#{params[:location]}", expires_in: 1.minute) do
+        @cords = MapService.get_geocode(params[:location])
+      end
+      WeatherService.get_weather(@cords)
     end
   end
 

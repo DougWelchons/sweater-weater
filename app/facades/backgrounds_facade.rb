@@ -6,7 +6,9 @@ class BackgroundsFacade
     if errors.any?
       OpenStruct.new({errors: errors})
     else
-      ImageService.get_image(params[:location])
+      Rails.cache.fetch("#{params[:location]}-image-search", expires_in: 1.minute) do
+        ImageService.get_image(params[:location])
+      end
     end
   end
 

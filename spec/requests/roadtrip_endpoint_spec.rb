@@ -27,7 +27,7 @@ RSpec.describe "app/v1/road_trip endpoint" do
         expect(body[:data][:attributes].keys).to eq([:start_city, :end_city, :travel_time, :weather_at_eta])
         expect(body[:data][:attributes][:start_city]).to eq(origin)
         expect(body[:data][:attributes][:end_city]).to eq(destination)
-        expect(body[:data][:attributes][:travel_time]).to eq("17 hours, 3 minutes")
+        expect(body[:data][:attributes][:travel_time]).to eq("17 hours, 52 minutes")
         expect(body[:data][:attributes][:weather_at_eta]).to be_a(Hash)
         expect(body[:data][:attributes][:weather_at_eta].keys).to eq([:temperature, :conditions])
         expect(body[:data][:attributes][:weather_at_eta][:temperature]).to be_a(Float)
