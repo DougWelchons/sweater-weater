@@ -1,5 +1,5 @@
 class RoadTripFacade
-  # extend Validatable
+  extend Validatable
 
   def self.get_route(params)
     return OpenStruct.new({errors: "Unautherized user"}) unless User.find_by(api_key: params[:api_key])
@@ -11,17 +11,12 @@ class RoadTripFacade
       if route.travel_time == "impossible"
         OpenStruct.new({id: nil, start_city: params[:origin], end_city: params[:destination], travel_time: route.travel_time, weather_at_eta: {}})
       else
-        cords = MapService.get_geocode(params[:destination])
-        weather = WeatherService.get_future_weather(cords, route.offset)
+        Rails.cache.fetch("get-cords-#{params[:destination]}", expires_in: 1.minute) do
+          @cords = MapService.get_geocode(params[:destination])
+        end
+        weather = WeatherService.get_future_weather(@cords, route.offset)
         OpenStruct.new({id: nil, start_city: params[:origin], end_city: params[:destination], travel_time: route.travel_time, weather_at_eta: {temperature: weather.temperature, conditions: weather.summary}})
       end
     end
-  end
-
-  def self.validate_required_param(params, required_keys)
-    required_keys.map do |element|
-      next "#{element.to_s.capitalize} required" unless params[element]
-      "#{element.to_s.capitalize} cannot be blank" if params[element].blank?
-    end.compact
   end
 end
