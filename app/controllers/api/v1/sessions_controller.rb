@@ -2,9 +2,11 @@ class Api::V1::SessionsController < ApplicationController
 
   def create
     return login_error unless params[:email]
+
     user = User.find_by(email: params[:email].downcase)
+
     if user && user.authenticate(params[:password])
-      render json: UsersSerializer.new(user)
+      render json: UsersSerializer.new(user), status: :created
     else
       login_error
     end

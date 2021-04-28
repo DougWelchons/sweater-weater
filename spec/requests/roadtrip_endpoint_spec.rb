@@ -16,7 +16,7 @@ RSpec.describe "app/v1/road_trip endpoint" do
         post "/api/v1/road_trip", headers: headers, params: body, as: :json
         body = JSON.parse(response.body, symbolize_names: true)
 
-        expect(response.status).to eq(200)
+        expect(response.status).to eq(201)
         expect(body).to be_a(Hash)
         expect(body.keys).to eq([:data])
         expect(body[:data]).to be_a(Hash)
@@ -27,7 +27,7 @@ RSpec.describe "app/v1/road_trip endpoint" do
         expect(body[:data][:attributes].keys).to eq([:start_city, :end_city, :travel_time, :weather_at_eta])
         expect(body[:data][:attributes][:start_city]).to eq(origin)
         expect(body[:data][:attributes][:end_city]).to eq(destination)
-        expect(body[:data][:attributes][:travel_time]).to eq("16 hours, 56 minutes")
+        expect(body[:data][:attributes][:travel_time]).to eq("17 hours, 3 minutes")
         expect(body[:data][:attributes][:weather_at_eta]).to be_a(Hash)
         expect(body[:data][:attributes][:weather_at_eta].keys).to eq([:temperature, :conditions])
         expect(body[:data][:attributes][:weather_at_eta][:temperature]).to be_a(Float)
@@ -35,7 +35,7 @@ RSpec.describe "app/v1/road_trip endpoint" do
       end
     end
 
-    it "returns a 200 response without weather and trip is impossible" do
+    it "returns a 200 response without weather if trip is impossible" do
       VCR.use_cassette('impossible_road_trip') do
         email = "email@domain.com"
         password = "password"
@@ -49,7 +49,7 @@ RSpec.describe "app/v1/road_trip endpoint" do
         post "/api/v1/road_trip", headers: headers, params: body, as: :json
         body = JSON.parse(response.body, symbolize_names: true)
 
-        expect(response.status).to eq(200)
+        expect(response.status).to eq(201)
         expect(body).to be_a(Hash)
         expect(body.keys).to eq([:data])
         expect(body[:data]).to be_a(Hash)
@@ -67,13 +67,11 @@ RSpec.describe "app/v1/road_trip endpoint" do
     end
   end
 
-  describe "Edge Case" do
-
-    it "returns a 400 respons if no origin is provided" do
+  describe "Edge Case and Sad path" do
+    it "returns a 400 response if no origin is provided" do
       email = "email@domain.com"
       password = "password"
       api_key = "fdsj34h3jh2jhr7ai2p0"
-      origin = "denver,co"
       destination = "paris,france"
 
       User.create!(email: email, password: password, password_confirmation: password, api_key: api_key)
@@ -83,10 +81,10 @@ RSpec.describe "app/v1/road_trip endpoint" do
       body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(body[:error]).to eq(["Origin required", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"])
+      expect(body[:error]).to eq(["Origin required", "https://github.com/DougWelchons/sweater-weather#endpoint-documentation"])
     end
 
-    it "returns a 400 respons if origin is blank" do
+    it "returns a 400 response if origin is blank" do
       email = "email@domain.com"
       password = "password"
       api_key = "fdsj34h3jh2jhr7ai2p0"
@@ -100,15 +98,14 @@ RSpec.describe "app/v1/road_trip endpoint" do
       body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(body[:error]).to eq(["Origin cannot be blank", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"])
+      expect(body[:error]).to eq(["Origin cannot be blank", "https://github.com/DougWelchons/sweater-weather#endpoint-documentation"])
     end
 
-    it "returns a 400 respons if no destination is provided" do
+    it "returns a 400 response if no destination is provided" do
       email = "email@domain.com"
       password = "password"
       api_key = "fdsj34h3jh2jhr7ai2p0"
       origin = "denver,co"
-      destination = "paris,france"
 
       User.create!(email: email, password: password, password_confirmation: password, api_key: api_key)
       headers = {'CONTENT_TYPE' => 'application/json'}
@@ -117,10 +114,10 @@ RSpec.describe "app/v1/road_trip endpoint" do
       body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(body[:error]).to eq(["Destination required", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"])
+      expect(body[:error]).to eq(["Destination required", "https://github.com/DougWelchons/sweater-weather#endpoint-documentation"])
     end
 
-    it "returns a 400 respons if destination is blank" do
+    it "returns a 400 response if destination is blank" do
       email = "email@domain.com"
       password = "password"
       api_key = "fdsj34h3jh2jhr7ai2p0"
@@ -134,10 +131,10 @@ RSpec.describe "app/v1/road_trip endpoint" do
       body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(body[:error]).to eq(["Destination cannot be blank", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"])
+      expect(body[:error]).to eq(["Destination cannot be blank", "https://github.com/DougWelchons/sweater-weather#endpoint-documentation"])
     end
 
-    it "returns a 400 respons if no api key is provided" do
+    it "returns a 400 response if no api key is provided" do
       email = "email@domain.com"
       password = "password"
       api_key = "fdsj34h3jh2jhr7ai2p0"
@@ -151,10 +148,10 @@ RSpec.describe "app/v1/road_trip endpoint" do
       body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(body[:error]).to eq(["API Key required", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"])
+      expect(body[:error]).to eq(["Unautherized user", "https://github.com/DougWelchons/sweater-weather#endpoint-documentation"])
     end
 
-    it "returns a 400 respons if api key is invalid" do
+    it "returns a 400 response if api key is invalid" do
       email = "email@domain.com"
       password = "password"
       api_key = "fdsj34h3jh2jhr7ai2p0"
@@ -163,29 +160,29 @@ RSpec.describe "app/v1/road_trip endpoint" do
 
       User.create!(email: email, password: password, password_confirmation: password, api_key: api_key)
       headers = {'CONTENT_TYPE' => 'application/json'}
-      body = {origin: origin, destination: destination, api_key: "fdsj34h3jh2jhr7ai2p9"}
+      body = {origin: origin, destination: destination, api_key: "invalid_api_key"}
       post "/api/v1/road_trip", headers: headers, params: body, as: :json
       body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(body[:error]).to eq(["Unautherized user", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"])
+      expect(body[:error]).to eq(["Unautherized user", "https://github.com/DougWelchons/sweater-weather#endpoint-documentation"])
     end
 
-    it "returns a 400 respons if api key is blank" do
+    it "returns a 400 response if api key is blank" do
       email = "email@domain.com"
       password = "password"
-      api_key = ""
+      api_key = "fdsj34h3jh2jhr7ai2p0"
       origin = "denver,co"
       destination = "paris,france"
 
       User.create!(email: email, password: password, password_confirmation: password, api_key: api_key)
       headers = {'CONTENT_TYPE' => 'application/json'}
-      body = {origin: origin, destination: destination, api_key: api_key}
+      body = {origin: origin, destination: destination, api_key: ''}
       post "/api/v1/road_trip", headers: headers, params: body, as: :json
       body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(body[:error]).to eq(["API Key cannot be blank", "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"])
+      expect(body[:error]).to eq(["Unautherized user", "https://github.com/DougWelchons/sweater-weather#endpoint-documentation"])
     end
   end
 end

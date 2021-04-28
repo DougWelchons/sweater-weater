@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_record
-  
 
-  def error(message = "Request error, please check you request and try again")
-    link = "https://github.com/DougWelchons/sweater-weater#endpoint-documentation"
-    render json: {error: [message, link]}, status: :bad_request
+
+  def error(message = "Error, please check you request and try again")
+    link = "https://github.com/DougWelchons/sweater-weather#endpoint-documentation"
+    {error: [message, link].flatten}
   end
 
   def render_invalid_record(exception)

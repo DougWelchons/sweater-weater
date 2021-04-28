@@ -19,11 +19,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 26 Apr 2021 18:06:01 GMT
+      - Wed, 28 Apr 2021 01:04:48 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
-      - '1011'
+      - '1012'
       Access-Control-Allow-Methods:
       - OPTIONS,GET,POST
       Access-Control-Allow-Origin:
@@ -35,7 +35,7 @@ http_interactions:
       Geocodetransactioncount:
       - '1'
       Last-Modified:
-      - Mon, 26 Apr 2021 18:06:01 GMT
+      - Wed, 28 Apr 2021 01:04:48 GMT
       Pragma:
       - no-cache
       Reversegeocodetransactioncount:
@@ -43,7 +43,7 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       Set-Cookie:
-      - JSESSIONID=D4EAADC97479AD0B7FC0D762803BD517; Path=/; HttpOnly
+      - JSESSIONID=A243E7D551F5874A99A4335A6102598B; Path=/; HttpOnly
       Status:
       - success
       Transactionweight:
@@ -52,6 +52,6 @@ http_interactions:
       encoding: UTF-8
       string: '{"info":{"statuscode":0,"copyright":{"text":"\u00A9 2021 MapQuest,
         Inc.","imageUrl":"http://api.mqcdn.com/res/mqlogo.gif","imageAltText":"\u00A9
-        2021 MapQuest, Inc."},"messages":[]},"options":{"maxResults":-1,"thumbMaps":true,"ignoreLatLngInput":false},"results":[{"providedLocation":{"location":"libby,mt"},"locations":[{"street":"","adminArea6":"","adminArea6Type":"Neighborhood","adminArea5":"Libby","adminArea5Type":"City","adminArea4":"","adminArea4Type":"County","adminArea3":"MT","adminArea3Type":"State","adminArea1":"US","adminArea1Type":"Country","postalCode":"","geocodeQualityCode":"A5XAX","geocodeQuality":"CITY","dragPoint":false,"sideOfStreet":"N","linkId":"282028289","unknownInput":"","type":"s","latLng":{"lat":48.38828,"lng":-115.55581},"displayLatLng":{"lat":48.38828,"lng":-115.55581},"mapUrl":"http://www.mapquestapi.com/staticmap/v5/map?key=mq-key&type=map&size=225,160&locations=48.38828,-115.55581|marker-sm-50318A-1&scalebar=true&zoom=12&rand=-673410461"}]}]}'
-  recorded_at: Mon, 26 Apr 2021 18:06:01 GMT
+        2021 MapQuest, Inc."},"messages":[]},"options":{"maxResults":-1,"thumbMaps":true,"ignoreLatLngInput":false},"results":[{"providedLocation":{"location":"libby,mt"},"locations":[{"street":"","adminArea6":"","adminArea6Type":"Neighborhood","adminArea5":"Libby","adminArea5Type":"City","adminArea4":"","adminArea4Type":"County","adminArea3":"MT","adminArea3Type":"State","adminArea1":"US","adminArea1Type":"Country","postalCode":"","geocodeQualityCode":"A5XAX","geocodeQuality":"CITY","dragPoint":false,"sideOfStreet":"N","linkId":"282028289","unknownInput":"","type":"s","latLng":{"lat":48.38828,"lng":-115.55581},"displayLatLng":{"lat":48.38828,"lng":-115.55581},"mapUrl":"http://www.mapquestapi.com/staticmap/v5/map?key=mq-key&type=map&size=225,160&locations=48.38828,-115.55581|marker-sm-50318A-1&scalebar=true&zoom=12&rand=-1588580987"}]}]}'
+  recorded_at: Wed, 28 Apr 2021 01:04:48 GMT
 recorded_with: VCR 6.0.0

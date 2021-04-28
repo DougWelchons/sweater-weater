@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "app/v1/users endpoint" do
   describe "Happy Path" do
-    it "returns a 201 respons with nessisary return data" do
+    it "returns a 201 respons with necessary return data" do
       email = "email@domain.com"
       password = "password"
       password_confirmation = "password"
@@ -26,7 +26,7 @@ RSpec.describe "app/v1/users endpoint" do
   end
 
   describe "Sad Path" do
-    it "returns a 400 respons if no email provided" do
+    it "returns a 400 response if no email provided" do
       password = "password"
       password_confirmation = "password"
       headers = {'CONTENT_TYPE' => 'application/json'}
@@ -38,7 +38,7 @@ RSpec.describe "app/v1/users endpoint" do
       expect(body[:error]).to eq("Validation failed: Email can't be blank, Email is invalid")
     end
 
-    it "returns a 400 respons if email is not in the right format" do
+    it "returns a 400 response if email is not in the right format" do
       email = "not an email"
       password = "password"
       password_confirmation = "password"
@@ -51,7 +51,7 @@ RSpec.describe "app/v1/users endpoint" do
       expect(body[:error]).to eq("Validation failed: Email is invalid")
     end
 
-    it "returns a 400 respons if email already exists" do
+    it "returns a 400 response if email already exists" do
       User.create!(email: "email@domain.com", password: "password", password_confirmation: "password" )
       email = "email@domain.com"
       password = "password"
@@ -65,7 +65,7 @@ RSpec.describe "app/v1/users endpoint" do
       expect(body[:error]).to eq("Validation failed: Email has already been taken")
     end
 
-    it "returns a 400 respons if passwords dont match" do
+    it "returns a 400 response if passwords dont match" do
       email = "email@domain.com"
       password = "password"
       password_confirmation = "not_password"
@@ -78,7 +78,7 @@ RSpec.describe "app/v1/users endpoint" do
       expect(body[:error]).to eq("Validation failed: Password confirmation doesn't match Password")
     end
 
-    it "returns a 400 respons if no password provided" do
+    it "returns a 400 response if no password provided" do
       email = "email@domain.com"
       password_confirmation = "password"
       headers = {'CONTENT_TYPE' => 'application/json'}
@@ -90,7 +90,7 @@ RSpec.describe "app/v1/users endpoint" do
       expect(body[:error]).to eq("Validation failed: Password can't be blank")
     end
 
-    it "returns a 400 respons if no password_confirmation provided" do
+    it "returns a 400 response if no password_confirmation provided" do
       email = "email@domain.com"
       password = "password"
       headers = {'CONTENT_TYPE' => 'application/json'}
