@@ -1,4 +1,4 @@
-class MapService
+class MapService < ApiService
 
   def self.get_geocode(address)
     response = make_api_call("/geocoding/v1/address?key=#{ENV['MQ-KEY']}&location=#{address}")
@@ -17,12 +17,7 @@ class MapService
     OpenStruct.new({travel_time: "#{hours} hours, #{minutes} minutes", offset: hours})
   end
 
-  def self.make_api_call(url)
-    response = connection.get(url)
-    JSON.parse(response.body, symbolize_names: true)
-  end
-
-  def self.connection
-    Faraday.new(url: ENV['MQ-GEOCODE-API'])
+  def self.base_url
+    ENV['MQ-GEOCODE-API']
   end
 end

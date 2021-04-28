@@ -22,8 +22,8 @@ RSpec.describe MapService do
           result = MapService.get_route("denver,co", "libby,mt")
 
           expect(result).to be_a(OpenStruct)
-          expect(result.travel_time).to eq("16 hours, 49 minutes")
-          expect(result.offset).to eq(16)
+          expect(result.travel_time).to eq("17 hours, 3 minutes")
+          expect(result.offset).to eq(17)
         end
       end
 

@@ -1,4 +1,4 @@
-class WeatherService
+class WeatherService < ApiService
 
   def self.get_weather(cords)
     response = make_api_call("?lat=#{cords.lat}&lon=#{cords.lng}&exclude=minutely,alerts&appid=#{ENV['OW-KEY']}&units=imperial")
@@ -46,15 +46,9 @@ class WeatherService
     else
       OpenStruct.new({summary: response[:daily][(offset / 24) - 1][:weather].first[:description], temperature: response[:daily][(offset / 24) - 1][:temp][:max]})
     end
-    # require "pry"; binding.pry
   end
 
-  def self.make_api_call(url)
-    response = connection.get(url)
-    JSON.parse(response.body, symbolize_names: true)
-  end
-
-  def self.connection
-    Faraday.new(url: ENV['OW-ONECALL-API'])
+  def self.base_url
+    ENV['OW-ONECALL-API']
   end
 end
