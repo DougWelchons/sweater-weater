@@ -1,9 +1,9 @@
-# Sweater Weather API
+application# Sweater Weather API
 
 ###### Author: [Doug Welchons](https://github.com/DougWelchons)
 
 
-Sweater Weather it the backend portion of a travel site, leveraging external APIs for travel time as well as current and forecasted weather for your arrival time.
+Sweater Weather is a backend application designed to work with a front end application to provide weather data for road trips. it leveraging external APIs for geolocations of desired cities in order to provide, current and forecasted weather.
 
 This project was built with:
 * Ruby version 2.5.3
@@ -142,13 +142,14 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
     - http://localhost:3000/api/v1/road_trip
       Content-Type: application/json
       Accept: application/json
-
+      ```
       body:
             {
               "origin": "libby,mt",
               "destination": "denver,co",
               "api_key": <valid_api_key>
             }
+      ```
 
   - example response:
   ```
@@ -180,12 +181,13 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
     - http://localhost:3000/api/v1/sessions
       Content-Type: application/json
       Accept: application/json
-
+      ```
       body:
             {
               "email": "email@domain.com",
               "password": "password"
             }
+      ```
 
   - example response:
   ```
@@ -211,13 +213,14 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
     - http://localhost:3000/api/v1/sessions
       Content-Type: application/json
       Accept: application/json
-
+      ```
       body:
             {
               "email": "email@domain.com",
               "password": "password"
               password_confirmation: "password"
             }
+      ```
 
   - example response:
   ```
