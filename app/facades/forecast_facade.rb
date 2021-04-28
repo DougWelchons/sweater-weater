@@ -1,4 +1,5 @@
 class ForecastFacade
+  # extend Validatable
 
   def self.get_forecast(params)
     errors = validate_required_param(params, [:location])

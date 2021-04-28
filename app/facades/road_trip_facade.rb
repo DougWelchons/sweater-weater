@@ -1,4 +1,5 @@
 class RoadTripFacade
+  # extend Validatable
 
   def self.get_route(params)
     return OpenStruct.new({errors: "Unautherized user"}) unless User.find_by(api_key: params[:api_key])
