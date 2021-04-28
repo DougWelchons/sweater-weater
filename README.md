@@ -48,7 +48,7 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
 
 ### Endpoint Documentation
 
-###### Forecast
+##### Forecast
 - This endpoint returns the weather forecast for a given city including:
   - current weather
   - daily weather for the next five days
@@ -103,7 +103,7 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
   }
   ```
 
-###### Backgrounds
+##### Backgrounds
 - This endpoint returns an image for a given city.
   - required query params:
     - location=<location> if in the US, <location> should include city and state, otherwise it should include city and country.
@@ -130,7 +130,7 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
   }
   ```
 
-###### Road_trip
+##### Road_trip
 - This endpoint returns the starting city, destination city, estimated travel time, and forecast in the destination for the arrival time.
   - required query params:
     - api_key=<api_key> a valid api key is required for this endpoint
@@ -170,7 +170,7 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
   }
   ```
 
-###### Sessions
+##### Sessions
 - This endpoint returns a users api_key if valid email and password are provided
   - required query params:
     - email=<users_email>
@@ -203,7 +203,7 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
   }
   ```
 
-###### Users
+##### Users
 - This endpoint creates a new user and returns a user api_key
   - required query params:
     - email=<users_email>
