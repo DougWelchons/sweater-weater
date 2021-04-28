@@ -56,15 +56,79 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
 
   - required query params:
     - location=<location> if in the US, <location> should include city and state, otherwise it should include city and country.
-  - example:
+  - example requests:
     - http://localhost:3000/api/v1/forecast?location=libby,mt
+
+  - example response:
+  ```
+  "data": {
+       "id": null,
+       "type": "forecast",
+       "attributes": {
+           "current_weather": {
+               "datetime": "2021-04-27 19:28:45 -0600",
+               "sunrise": "2021-04-27 06:05:00 -0600",
+               "sunset": "2021-04-27 19:49:46 -0600",
+               "temperature": 44.55,
+               "feels_like": 42.57,
+               "humidity": 90,
+               "uvi": 0.09,
+               "visibility": 10000,
+               "conditions": "moderate rain",
+               "icon": "10d"
+           },
+           "daily_weather": [
+               {
+                   "date": "2021-04-27",
+                   "sunrise": "2021-04-27 06:05:00 -0600",
+                   "sunset": "2021-04-27 19:49:46 -0600",
+                   "max_temp": 59.68,
+                   "min_temp": 40.87,
+                   "conditions": "heavy intensity rain",
+                   "icon": "10d"
+               },
+              {4 more ...}
+           ],
+           "hourly_weather": [
+               {
+                   "time": "19:00:00",
+                   "temperature": 44.55,
+                   "conditions": "light rain",
+                   "icon": "10d"
+               },
+               {7 more ...}
+              ]
+          }
+      }
+  }
+  ```
 
 ###### Backgrounds
 - This endpoint returns an image for a given city.
   - required query params:
     - location=<location> if in the US, <location> should include city and state, otherwise it should include city and country.
-  - example:
+  - example request:
     - http://localhost:3000/api/v1/backgrounds?location=libby,mt
+
+  - example response:
+  ```
+  {
+    "data": {
+        "id": null,
+        "type": "image",
+        "attributes": {
+            "image": {
+                "location": "denver,co",
+                "image_url": "https://live.staticflickr.com/65535/51142231625_b81631d2df.jpg",
+                "credit": {
+                    "source": "flickr.com",
+                    "auther": "ID:20544648@N06"
+                  }
+              }
+          }
+      }
+  }
+  ```
 
 ###### Road_trip
 - This endpoint returns the starting city, destination city, estimated travel time, and forecast in the destination for the arrival time.
@@ -74,7 +138,7 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
     - destination=<location> if in the US, <location> should include city and state, otherwise it should include city and country.
   - other notes
     - if a road trip route cannot be found, the duration will return as "impossible", and there will be no weather data
-  - example:
+  - example requests:
     - http://localhost:3000/api/v1/road_trip
       Content-Type: application/json
       Accept: application/json
@@ -86,6 +150,25 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
               "api_key": <valid_api_key>
             }
 
+  - example response:
+  ```
+  {
+    "data": {
+        "id": null,
+        "type": "roadtrip",
+        "attributes": {
+            "start_city": "Denver,CO",
+            "end_city": "Pueblo,CO",
+            "travel_time": "1 hours, 52 minutes",
+            "weather_at_eta": {
+                "temperature": 51.22,
+                "conditions": "few clouds"
+              }
+          }
+      }
+  }
+  ```
+
 ###### Sessions
 - This endpoint returns a users api_key if valid email and password are provided
   - required query params:
@@ -93,7 +176,7 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
     - password=<users_password>
   - other notes
     anything other then a valid email and matching password are provided "Invalid Login" will be returned
-  - example:
+  - example requests:
     - http://localhost:3000/api/v1/sessions
       Content-Type: application/json
       Accept: application/json
@@ -104,13 +187,27 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
               "password": "password"
             }
 
+  - example response:
+  ```
+  {
+    "data": {
+        "id": "1",
+        "type": "users",
+        "attributes": {
+            "email": "whatever@example.com",
+            "api_key": "api_key"
+          }
+      }
+  }
+  ```
+
 ###### Users
 - This endpoint creates a new user and returns a user api_key
   - required query params:
     - email=<users_email>
     - password=<users_password>
     - password_confirmation=<users_password>
-  - example:
+  - example requests:
     - http://localhost:3000/api/v1/sessions
       Content-Type: application/json
       Accept: application/json
@@ -121,6 +218,20 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
               "password": "password"
               password_confirmation: "password"
             }
+
+  - example response:
+  ```
+  {
+      "data": {
+          "id": "2",
+          "type": "users",
+          "attributes": {
+              "email": "email@example.com",
+              "api_key": "api_key"
+          }
+      }
+  }
+  ```
 
 ### Testing
 ##### Running tests
