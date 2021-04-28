@@ -258,6 +258,7 @@ alternatively you can run `rails db:{drop,create,migrate}` to set up the databas
 - Edge case & Sad path testing includes:
   - endpoint returns a 400 error if location param is not provided
   - endpoint returns a 400 error if location is blank
+  - endpoint returns a 400 error if no images can be found
 
 ##### Road_trip endpoint
 - happy path testing includes:

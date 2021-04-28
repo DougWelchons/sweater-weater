@@ -6,7 +6,7 @@ class Api::V1::SessionsController < ApplicationController
     user = User.find_by(email: params[:email].downcase)
 
     if user && user.authenticate(params[:password])
-      render json: UsersSerializer.new(user), status: :created
+      render json: UsersSerializer.new(user)
     else
       login_error
     end

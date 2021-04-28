@@ -49,5 +49,15 @@ RSpec.describe "api/v1/backgrounds endpoint" do
         expect(body).to eq({:error=>["Location cannot be blank", "https://github.com/DougWelchons/sweater-weather#endpoint-documentation"]})
       end
     end
+
+    it "returns a 400 error if no images can be found" do
+      VCR.use_cassette('backgrond_location_no_image') do
+        get "/api/v1/backgrounds?location=dasf adsfakds fdkjf kdjf"
+        body = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response.status).to eq(400)
+        expect(body).to eq({:error=>["No images found", "https://github.com/DougWelchons/sweater-weather#endpoint-documentation"]})
+      end
+    end
   end
 end

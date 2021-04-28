@@ -18,7 +18,7 @@ RSpec.describe "app/v1/sessions endpoint" do
       post "/api/v1/sessions", headers: headers, params: body, as: :json
       body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response.status).to eq(201)
+      expect(response.status).to eq(200)
       expect(body).to be_a(Hash)
       expect(body.keys).to eq([:data])
       expect(body[:data]).to be_a(Hash)
